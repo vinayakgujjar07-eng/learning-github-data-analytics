@@ -1,0 +1,71 @@
+-- PROJECT: Hospital Patient Analysis
+-- DATABASE: SQLite
+
+-- STEP 1: Create the patients table
+
+CREATE TABLE IF NOT EXISTS patients (
+    patient_id INTEGER PRIMARY KEY,
+    patient_name TEXT,
+    age INTEGER,
+    gender TEXT,
+    department TEXT,
+    bill_amount REAL,
+    satisfaction_score INTEGER
+);
+
+-- STEP 2: Insert sample data
+
+INSERT OR IGNORE INTO patients VALUES
+(1, 'Patient A', 25, 'Male', 'Cardiology', 15000, 4),
+(2, 'Patient B', 42, 'Female', 'Neurology', 22000, 5),
+(3, 'Patient C', 35, 'Male', 'Orthopaedics', 12000, 3),
+(4, 'Patient D', 58, 'Female', 'Cardiology', 28000, 4),
+(5, 'Patient E', 47, 'Male', 'Neurology', 18000, 4),
+(6, 'Patient F', 31, 'Female', 'Cardiology', 14000, 5),
+(7, 'Patient G', 65, 'Male', 'Orthopaedics', 30000, 3),
+(8, 'Patient H', 29, 'Female', 'Neurology', 16000, 5),
+(9, 'Patient I', 52, 'Male', 'Cardiology', 25000, 4),
+(10, 'Patient J', 40, 'Female', 'Orthopaedics', 20000, 4);
+
+-- STEP 3: Display all patients
+
+SELECT *
+FROM patients;
+
+-- STEP 4: Calculate total hospital revenue
+
+SELECT SUM(bill_amount) AS total_revenue
+FROM patients;
+
+-- STEP 5: Calculate average patient age
+
+SELECT AVG(age) AS average_patient_age
+FROM patients;
+
+-- STEP 6: Calculate revenue by department
+
+SELECT
+    department,
+    SUM(bill_amount) AS total_revenue
+FROM patients
+GROUP BY department
+ORDER BY total_revenue DESC;
+
+-- STEP 7: Calculate average satisfaction by department
+
+SELECT
+    department,
+    ROUND(AVG(satisfaction_score), 2) AS avg_satisfaction
+FROM patients
+GROUP BY department
+ORDER BY avg_satisfaction DESC;
+
+-- STEP 8: Identify patients with bills above 20000
+
+SELECT
+    patient_id,
+    department,
+    bill_amount
+FROM patients
+WHERE bill_amount > 20000
+ORDER BY bill_amount DESC;
