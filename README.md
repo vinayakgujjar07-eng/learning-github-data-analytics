@@ -15,3 +15,9 @@ I am learning data analytics and building practical projects.
 ## My Goal
 To build a portfolio of data analytics projects
 and demonstrate my analytical skills. Evedence based decision making
+## Current Learning Progress
+
+- GitHub repository created
+- First commit completed
+- Changes published to GitHub
+- Learning version control
