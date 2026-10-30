@@ -102,3 +102,41 @@ WHERE bill_amount > 20000
 ORDER BY bill_amount DESC;
 GO
 ```
+-- ADVANCED HOSPITAL ANALYSIS
+
+-- 1. Patient count by department
+
+SELECT
+    department,
+    COUNT(*) AS total_patients
+FROM dbo.patients
+GROUP BY department;
+
+
+-- 2. Revenue by gender
+
+SELECT
+    gender,
+    SUM(bill_amount) AS total_revenue
+FROM dbo.patients
+GROUP BY gender;
+
+
+-- 3. Identify highest billing patient
+
+SELECT TOP 1
+    patient_name,
+    department,
+    bill_amount
+FROM dbo.patients
+ORDER BY bill_amount DESC;
+
+
+-- 4. Department-wise average billing
+
+SELECT
+    department,
+    AVG(bill_amount) AS average_billing
+FROM dbo.patients
+GROUP BY department
+ORDER BY average_billing DESC;
